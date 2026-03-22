@@ -6,7 +6,6 @@ The goal of this project is to predict whether an incident will occur in the nea
 More specifically, the model looks at the previous **W time steps** and predicts whether an incident will happen within the next **H time steps**.
 This problem is formulated as a **binary classification task** using a sliding-window approach.
 
----
 
 ## Dataset
 
@@ -20,7 +19,6 @@ Dataset sources:
 - Kaggle: https://www.kaggle.com/datasets/boltzmannbrain/nab  
 - GitHub: https://github.com/numenta/NAB/blob/master/data/realKnownCause/cpu_utilization_asg_misconfiguration.csv  
 
----
 
 ## Incident Definition
 
@@ -28,7 +26,6 @@ The Kaggle version of the dataset did not include anomaly labels, so I defined i
 - An incident is defined as:  **CPU utilization > 80**
 This threshold was chosen because most values in the dataset are significantly lower, and values above 80 indicate unusually high CPU load that could realistically trigger an alert.
 
----
 
 ## Sliding-Window Formulation
 
@@ -44,7 +41,6 @@ Each sample is constructed as:
 
 This allows the model to learn patterns that precede incidents.
 
----
 
 ## Models
 
@@ -54,7 +50,6 @@ I trained and compared three models:
 - XGBoost
 These were chosen to compare a simple linear model with more powerful tree-based methods.
 
----
 
 ## Evaluation Setup
 
@@ -71,7 +66,6 @@ These metrics are important because in alerting systems we care about both:
 - avoiding false alarms (precision)
 - not missing incidents (recall)
   
----
 
 ## Results
 
@@ -88,7 +82,6 @@ These metrics are important because in alerting systems we care about both:
 - Random Forest performed slightly worse across all metrics in this setup.
 Overall, Logistic Regression provided the best balance for this task, while XGBoost was more conservative.
 
----
 
 ## Possible Improvements
 
@@ -100,7 +93,6 @@ In a real-world system, I would:
 - Optimize alert thresholds based on business requirements
 - Evaluate performance at the alert level, not only per sample
 
----
 
 ## How to Run
 
